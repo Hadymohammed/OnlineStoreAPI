@@ -1,0 +1,1 @@
+INSERT INTO products (name,price) VALUES ('Molto','5'),('Cola','10')

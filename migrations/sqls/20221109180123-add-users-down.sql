@@ -1,0 +1,1 @@
+delete from users where first_name='Ahmed' and last_name='Elhafny';
