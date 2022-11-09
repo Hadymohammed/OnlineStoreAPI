@@ -1,5 +1,5 @@
 import hash  from '../services/hash.services';
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
 import userModel, { User } from "../models/user.model";
 import generateToken from '../services/tokens.services';
 import varifyUser from '../services/varifyUser.services';
@@ -67,4 +67,25 @@ const update =async (req:Request,res:Response):Promise<void> => {
         res.json("Varification failed");
     }
 }
-export {index,Show,create,update};
+const deleteUser =async (req:Request,res:Response):Promise<void> => {
+    const user:User={
+        id:req.body.id,
+        first_name:req.body.first_name,
+        last_name:req.body.last_name,
+        password:req.body.password
+    }   
+    const Varification=await varifyUser(user.id as number,user.password as string)
+        if(Varification===true){
+            try{
+                const data = await userEntity.deleteById(user.id as number);
+                res.send(data);
+            }
+            catch(err){
+                res.json("Invalid : " + err);
+            }
+        }
+        else{
+            res.json("Varification Failed");
+        }
+}
+export {index,Show,create,deleteUser,update};
