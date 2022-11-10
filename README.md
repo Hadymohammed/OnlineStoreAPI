@@ -1,5 +1,11 @@
 # OnlineStoreAPI
 Practicing on RESTFUL API &amp; Postgres DB
+## How to start
+- install package dependencies => npm install
+- add .env file to the root directory following .env.example format
+- run dev script using npm
+- database port : 5432
+- app port : 3000
 
 ## DataBase Schema
 - products Table
@@ -40,3 +46,7 @@ Practicing on RESTFUL API &amp; Postgres DB
   - /create (POST): adds new order, (user_id,status) required in req.body as json (token required)
   - /update (PATCH): update existing order, (id,user_id?,status?) required in req.body as json (token required)
   - /delete (DELETE): deletes order using id, (id) required in req.body as json (token required)
+  #### orderProducts.Router
+  - /orderProducts (GET): shows order products using id, (order_id) required in req.body as json (token required)
+  - /addProduct (POST): adds new product to existing order, (order_id,product_id,quantity) required in req.body as json (token required)
+  - /deleteProduct (DELETE): deletes order using id, (order_id,product_id) required in req.body as json (token required)
