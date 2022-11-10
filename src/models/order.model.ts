@@ -1,5 +1,4 @@
 import db from '../providers/database.provider';
-import { Product } from './product.model';
 
 export interface Order {
     id?: number;

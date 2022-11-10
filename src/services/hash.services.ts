@@ -4,10 +4,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pepper = process.env.PEPPER;
-const salt: any = process.env.SALT_ROUNDS;
+const salt = process.env.SALT_ROUNDS as string;
 
 const hash = (password: string): string => {
-    return bcrypt.hashSync(password + pepper, parseInt(salt as string));
+    return bcrypt.hashSync(password + pepper, parseInt(salt));
 };
 
 export default hash;

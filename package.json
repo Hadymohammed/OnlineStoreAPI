@@ -4,8 +4,7 @@
   "description": "Practicing on RESTFUL API &amp; Postgres DB",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm run build",
-    "start": "node .",
+    "start": "npm run build && node ./dist/app.js",
     "dev": "nodemon src/app.ts",
     "lint": "eslint src/**/*.{ts,json}",
     "lint:fix": "eslint src/**/*.{ts,json} --fix",
@@ -13,8 +12,7 @@
     "build": "npx tsc",
     "db:up": "npx db-migrate up",
     "db:down": "npx db-migrate reset",
-    "pretest": "npm run lint:fix && npm run build",
-    "test": "npm run build && npx jasmine",
+    "test": "npm run lint:fix && npm run build && npx jasmine",
     "testDB": "ENV=test db-migrate --env test up && jasmine-ts && db-migrate db:drop test"
   },
   "repository": {

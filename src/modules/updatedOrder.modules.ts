@@ -1,5 +1,4 @@
 import orderModel, { Order } from '../models/order.model';
-import db from '../providers/database.provider';
 
 const orderEntity = new orderModel();
 const getUpdatedOrder = async (newOrder: Order): Promise<Order> => {

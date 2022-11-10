@@ -1,5 +1,5 @@
 import hash from '../services/hash.services';
-import { Request, response, Response } from 'express';
+import { Request, Response } from 'express';
 import UserModel, { User } from '../models/user.model';
 import generateToken from '../services/tokens.services';
 import varifyUser from '../services/varifyUser.services';

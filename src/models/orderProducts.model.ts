@@ -4,7 +4,6 @@ import formatting, {
 } from '../modules/formateJson.modules';
 import db from '../providers/database.provider';
 import ordersModel, { Order } from './order.model';
-import { Product } from './product.model';
 import { User } from './user.model';
 
 export interface orderProduct {

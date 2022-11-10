@@ -1,5 +1,4 @@
 import userModel, { User } from '../models/user.model';
-import db from '../providers/database.provider';
 
 const userEntity = new userModel();
 const getUpdatedUser = async (newUser: User): Promise<User> => {

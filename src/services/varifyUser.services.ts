@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import userModel, { User } from '../models/user.model';
+import userModel from '../models/user.model';
 import dotenv from 'dotenv';
 
 dotenv.config();

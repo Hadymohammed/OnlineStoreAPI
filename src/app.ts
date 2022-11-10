@@ -6,7 +6,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 
 const app: Application = express();
-const address: string = '0.0.0.0:3000';
+const address = '0.0.0.0:3000';
 
 app.use(bodyParser.json());
 

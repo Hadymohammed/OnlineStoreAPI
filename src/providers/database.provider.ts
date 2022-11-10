@@ -5,7 +5,7 @@ dotenv.config();
 const { ENV, DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_NAME_TEST } = process.env;
 
 let db: Pool = new Pool();
-if (process.env.ENV === 'dev') {
+if (ENV === 'dev') {
     db = new Pool({
         user: DB_USER,
         host: DB_HOST,
@@ -14,7 +14,7 @@ if (process.env.ENV === 'dev') {
     });
 }
 
-if (process.env.ENV === 'test') {
+if (ENV === 'test') {
     db = new Pool({
         user: DB_USER,
         host: DB_HOST,
