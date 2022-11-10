@@ -1,27 +1,21 @@
-import express, { json, Request, Response,Application } from 'express'
-import bodyParser from 'body-parser'
-import router from './routers'
-import helmet from 'helmet'
-import cors from 'cors'
-import morgan from 'morgan'
+import express, { json, Application } from 'express';
+import bodyParser from 'body-parser';
+import router from './routers';
+import helmet from 'helmet';
+import cors from 'cors';
+import morgan from 'morgan';
 
-const app: Application = express()
-const address: string = "0.0.0.0:3000"
+const app: Application = express();
+const address: string = '0.0.0.0:3000';
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-app.use(
-    cors(),
-    json(),
-    helmet(),
-    morgan('dev'),
-)
+app.use(cors(), json(), helmet(), morgan('dev'));
 
-app.use("/", router)
-
+app.use('/', router);
 
 app.listen(3000, function () {
-    console.log(`starting app on: ${address}`)
-})
+    console.log(`starting app on: ${address}`);
+});
 
-export default app
+export default app;
