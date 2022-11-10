@@ -32,5 +32,11 @@ Practicing on RESTFUL API &amp; Postgres DB
   - index (GET): shows all products
   - /show (GET): shows product using id, (id) required in req.body as json
   - /create (POST): adds new product, (name,price) required in req.body as json (token required)
-  - /update (PATCH): update existing product, (id,name,price) required in req.body as json (token required)
+  - /update (PATCH): update existing product, (id,name?,price?) required in req.body as json (token required)
   - /delete (DELETE): deletes product using id, (id) required in req.body as json (token required)
+- /orders
+  - index (GET): shows all orders
+  - /show (GET): shows order using id, (id) required in req.body as json
+  - /create (POST): adds new order, (user_id,status) required in req.body as json (token required)
+  - /update (PATCH): update existing order, (id,user_id?,status?) required in req.body as json (token required)
+  - /delete (DELETE): deletes order using id, (id) required in req.body as json (token required)
