@@ -1,15 +1,30 @@
 import { Request, Response } from "express";
 import ordersModel, { Order } from "../models/order.model";
 import orderProductsModel,{orderProduct} from "../models/orderProducts.model";
+import userModel from "../models/user.model";
 
 const orderProductsEntity=new orderProductsModel;
 const orderEntity=new ordersModel;
+const userEntity=new userModel;
+
 const ShowOrder =async (req:Request,res:Response):Promise<void> => {
     try{
         //accepts body in json format
         const id=req.body.order_id;
-        const order=await orderEntity.getById(id);
+        const order=await orderEntity.getByOrderId(id);
         const data=await orderProductsEntity.showByOrder(order);
+        res.send(data);
+    }
+    catch(err){
+        res.status(500).send("Internal server error");
+    }
+}
+const ShowUserOrders =async (req:Request,res:Response):Promise<void> => {
+    try{
+        //accepts body in json format
+        const user_id=req.body.user_id;
+        const user=await userEntity.getById(user_id);
+        const data=await orderProductsEntity.showUserOrders(user);
         res.send(data);
     }
     catch(err){
@@ -60,4 +75,4 @@ const deleteProduct=async (req:Request,res:Response):Promise<void> =>{
         res.json('Invalid : '+err);
     }
 }
-export {ShowOrder,addProduct,deleteOrder,deleteProduct};
+export {ShowOrder,ShowUserOrders,addProduct,deleteOrder,deleteProduct};

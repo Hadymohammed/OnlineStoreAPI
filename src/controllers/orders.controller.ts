@@ -17,13 +17,14 @@ const Show =async (req:Request,res:Response):Promise<void> => {
     try{
         //accepts body in json format
         const id=req.body.id;
-        const data=await orderEntity.getById(id);
+        const data=await orderEntity.getByOrderId(id);
         res.send(data);
     }
     catch(err){
         res.status(500).send("Internal server error");
     }
 }
+
 const addOdrer =async (req:Request,res:Response):Promise<void> => {
     try{
         //accepts body in json format

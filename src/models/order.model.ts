@@ -14,12 +14,19 @@ class ordersModel{
         );
         return rows;
     }
-    async getById(id:number):Promise<Order>{
+    async getByOrderId(id:number):Promise<Order>{
         const {rows}=await db.query(
             'select * from orders where id=$1;',
             [id]
         );
         return rows[0];
+    }
+    async getByUserId(id:number):Promise<Order[]>{
+        const {rows}=await db.query(
+            'select * from orders where user_id=$1;',
+            [id]
+        );
+        return rows;
     }
     async create(order:Order):Promise<Order>{
         const { rows } = await db.query(

@@ -1,6 +1,8 @@
+import formatting,{completeOrder, userOrders} from '../modules/formateJson.modules';
 import db from '../providers/database.provider'
-import { Order } from './order.model';
+import ordersModel, { Order } from './order.model';
 import { Product } from './product.model';
+import { User } from './user.model';
 
 export interface orderProduct{
     id?:number,
@@ -8,12 +10,8 @@ export interface orderProduct{
     product_id:number,
     quantity?:number
 }
-export interface completeOrder{
-    order_id:number,
-    order_status:string,
-    products:orderProduct[],
-}
-
+const formate=new formatting;
+const orderEntity=new ordersModel;
 class orderProductsModel{
     async showAll():Promise<orderProduct[]>{
         const {rows}=await db.query(
@@ -26,20 +24,18 @@ class orderProductsModel{
             'select * from orders join order_products on orders.id=order_products.order_id join products on products.id=order_products.product_id where orders.id=$1',
             [order.id]
         );
-        for (const row of rows) {
-            delete row.id;
-            delete row.user_id;
-            delete row.status;
-            delete row.order_id;
-        }
-        const orderInfo:completeOrder={
-            order_id:order.id as number,
-            order_status:order.status,
-            products:[]
-        }
-        const products:orderProduct[]=rows;
-        orderInfo.products=products;
+
+        const orderInfo:completeOrder=formate.completeOrder(rows,order);
         return orderInfo;
+    }
+    async showUserOrders(user:User):Promise<userOrders>{
+        const orders=await orderEntity.getByUserId(user.id as number);
+        let completeOrders:completeOrder[]=[];
+        for (const order of orders) {
+            completeOrders.push(await this.showByOrder(order));
+        }
+        const userOrder:userOrders=formate.userOrders(user,completeOrders);
+        return userOrder;
     }
     async addProduct(product:orderProduct):Promise<orderProduct>{
             const {rows}=await db.query(
