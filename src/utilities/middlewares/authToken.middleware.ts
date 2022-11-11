@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const verifyAuthToken = (req: Request, res: Response, next:NextFunction )=>{
+const verifyAuthToken = (req: Request, res: Response, next: NextFunction) => {
     const secret = process.env.JWT_SECRET as string;
     try {
         const authorizationHeader = req.headers.authorization as string;

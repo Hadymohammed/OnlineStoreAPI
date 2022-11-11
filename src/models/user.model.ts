@@ -11,7 +11,7 @@ export interface User {
 class UserModel {
     async index(): Promise<User[]> {
         const { rows } = await db.query(
-            'select (id,first_name,last_name) from users'
+            'select * from users'
         );
         return rows;
     }
@@ -31,7 +31,7 @@ class UserModel {
         delete rows[0].password;
         return rows[0];
     }
-    
+
     async deleteById(id: number): Promise<User> {
         const { rows } = await db.query(
             'delete from users where id=$1 RETURNING *',

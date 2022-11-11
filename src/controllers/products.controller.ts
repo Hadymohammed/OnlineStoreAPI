@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import ProductModel, { Product } from '../models/product.model';
+import getUpdatedProduct from '../modules/updatedProduct.modules';
 
 const productEntity = new ProductModel();
 
@@ -55,7 +56,8 @@ const update = async (req: Request, res: Response): Promise<void> => {
         price: req.body.price,
     };
     try {
-        const data = await productEntity.update(product);
+        const updated=await getUpdatedProduct(product);
+        const data = await productEntity.update(updated);
         res.send(data);
     } catch (err) {
         res.json('Invalid : ' + err);

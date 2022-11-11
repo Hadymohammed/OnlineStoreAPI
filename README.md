@@ -52,7 +52,7 @@ Practicing on RESTFUL API &amp; Postgres DB
   - /update (PATCH): update existing order, (id,user_id?,status?) required in req.body as json (token required)
   - /delete (DELETE): deletes order using id, (id) required in req.body as json (token required)
   #### orderProducts.Router
-  - /Products (GET): shows order products using id, (order_id) required in req.body as json (token required)
+  - /products (GET): shows order products using id, (order_id) required in req.body as json (token required)
   - /user (GET): shows user orders and its products using user_id, (user_id) required in req.body as json (token required)
   - /addProduct (POST): adds new product to existing order, (order_id,product_id,quantity) required in req.body as json (token required)
   - /deleteProduct (DELETE): deletes order using id, (order_id,product_id) required in req.body as json (token required)

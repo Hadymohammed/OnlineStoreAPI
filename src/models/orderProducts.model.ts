@@ -4,18 +4,20 @@ import formatting, {
 } from '../modules/formateJson.modules';
 import db from '../providers/database.provider';
 import ordersModel, { Order } from './order.model';
-import { User } from './user.model';
+import UserModel, { User } from './user.model';
 
 export interface orderProduct {
     id?: number;
     order_id: number;
     product_id: number;
-    name?:string,
-    price?:number,
+    name?: string;
+    price?: number;
     quantity?: number;
 }
 const formate = new formatting();
 const orderEntity = new ordersModel();
+const userEntity=new UserModel();
+
 class OrderProductsModel {
     async showAll(): Promise<orderProduct[]> {
         const { rows } = await db.query(
@@ -29,8 +31,9 @@ class OrderProductsModel {
             'select * from orders join order_products on orders.id=order_products.order_id join products on products.id=order_products.product_id where orders.id=$1',
             [order.id]
         );
-
-        const orderInfo: completeOrder = formate.completeOrder(rows, order);
+        
+        const user=await userEntity.getById(order.user_id);
+        const orderInfo: completeOrder = formate.completeOrder(rows, order,user);
         return orderInfo;
     }
 
@@ -58,7 +61,7 @@ class OrderProductsModel {
     ): Promise<orderProduct> {
         const { rows } = await db.query(
             'delete from order_products where order_id=$1 and product_id=$2 RETURNING *',
-            [order_id,product_id]
+            [order_id, product_id]
         );
         return rows[0];
     }
