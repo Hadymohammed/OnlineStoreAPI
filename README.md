@@ -12,6 +12,14 @@ Practicing on RESTFUL API &amp; Postgres DB
 - start : run the app in js after building
 - lint : use eslint
 - prettier : run prettier with --write option
+## Running senario "Follow endpoints instructions"
+- send (POST) request to /users/create 
+- send (POST) request to /products/create
+- send (POST) request to /orders/create
+- send (POST) request to /orders/addProduct
+- send (GET) request to /orders/user
+- send (GET) request to /orders/products
+
 ## DataBase Schema
 - products Table
   - id
