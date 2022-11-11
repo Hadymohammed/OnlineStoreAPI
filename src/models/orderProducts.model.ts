@@ -10,6 +10,8 @@ export interface orderProduct {
     id?: number;
     order_id: number;
     product_id: number;
+    name?:string,
+    price?:number,
     quantity?: number;
 }
 const formate = new formatting();
@@ -56,7 +58,7 @@ class OrderProductsModel {
     ): Promise<orderProduct> {
         const { rows } = await db.query(
             'delete from order_products where order_id=$1 and product_id=$2 RETURNING *',
-            [product_id, order_id]
+            [order_id,product_id]
         );
         return rows[0];
     }
@@ -66,7 +68,7 @@ class OrderProductsModel {
             'delete from order_products where order_id=$1 RETURNING *',
             [order_id]
         );
-        return rows[0];
+        return rows;
     }
 }
 

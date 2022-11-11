@@ -1,7 +1,7 @@
 import ProductModel,{Product} from '../../models/product.model'
 
 const productEntity=new ProductModel;
-
+//products id starts from 1 
 describe("Product Model testing suit",()=>{
 
     it("Should have an showAll method",() => {
@@ -29,35 +29,35 @@ describe("Product Model testing suit",()=>{
             price: 10
           });
         expect(result).toEqual({
-            id:1,
+            id:2,
             name: 'bag',
             price: 10
         });
     })
     it("Should get product using id",async () => {
-        const result = await productEntity.getById(1);
+        const result = await productEntity.getById(2);
         expect(result).toEqual({
-            id:1,
+            id:2,
             name: 'bag',
             price: 10
         });
     })
     it("Should updates product.price using update",async ()=>{
         const result=await productEntity.update({
-            id:1,
+            id:2,
             name:'bag',
             price:20
         })
         expect(result).toEqual({
-            id:1,
+            id:2,
             name:'bag',
             price:20
         })
     })
     it("Should deletes product using deleteById",async ()=>{
-        const result=await productEntity.deleteById(1)
+        const result=await productEntity.deleteById(2)
         expect(result).toEqual({
-            id:1,
+            id:2,
             name:'bag',
             price:20
         })

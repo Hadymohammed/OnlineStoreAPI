@@ -6,7 +6,12 @@ Practicing on RESTFUL API &amp; Postgres DB
 - run dev script using npm
 - database port : 5432
 - app port : 3000
-
+## Scripts to use
+- test : for endpoint testing and run all tests in a testing database
+- dev : run the development environment
+- start : run the app in js after building
+- lint : use eslint
+- prettier : run prettier with --write option
 ## DataBase Schema
 - products Table
   - id
