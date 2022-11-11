@@ -3,7 +3,7 @@ import app from '../../app';
 
 const request = supertest(app);
 
-describe('./orders end points tests', () => {
+describe('./orders endpoints tests', () => {
     it('./orders should exist', async () => {
         const response = await request.get('/orders');
         expect(response.status).toBe(200);

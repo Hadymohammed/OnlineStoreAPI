@@ -9,16 +9,7 @@ export interface User {
 }
 
 class UserModel {
-    async create(user: User): Promise<User> {
-        const { rows } = await db.query(
-            'INSERT INTO users (first_name, last_name, password) VALUES ($1, $2, $3) RETURNING *',
-            [user.first_name, user.last_name, user.password]
-        );
-        delete rows[0].password;
-        return rows[0];
-    }
-
-    async showAll(): Promise<User[]> {
+    async index(): Promise<User[]> {
         const { rows } = await db.query(
             'select (id,first_name,last_name) from users'
         );
@@ -32,6 +23,15 @@ class UserModel {
         return rows[0];
     }
 
+    async create(user: User): Promise<User> {
+        const { rows } = await db.query(
+            'INSERT INTO users (first_name, last_name, password) VALUES ($1, $2, $3) RETURNING *',
+            [user.first_name, user.last_name, user.password]
+        );
+        delete rows[0].password;
+        return rows[0];
+    }
+    
     async deleteById(id: number): Promise<User> {
         const { rows } = await db.query(
             'delete from users where id=$1 RETURNING *',

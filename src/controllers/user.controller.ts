@@ -9,7 +9,7 @@ const userEntity = new UserModel();
 
 const index = async (req: Request, res: Response): Promise<void> => {
     try {
-        const data = await userEntity.showAll();
+        const data = await userEntity.index();
         res.send(data);
     } catch (err) {
         res.status(500).send('Internal server error');
