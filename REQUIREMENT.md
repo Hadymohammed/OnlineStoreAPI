@@ -28,21 +28,6 @@ These are the notes from a meeting with the frontend developer that describe wha
   - /addProduct (POST): adds new product to existing order, (order_id,product_id,quantity) required in req.body as json (token required)
   - /deleteProduct (DELETE): deletes order using id, (order_id,product_id) required in req.body as json (token required)
 
-#### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
-
-#### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
-
-#### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
 
 ## Data Shapes
 #### Product

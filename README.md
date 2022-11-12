@@ -1,5 +1,10 @@
 # OnlineStoreAPI
 Practicing on RESTFUL API &amp; Postgres DB
+- build RESTFUL API integrated with Postgres DB for onlineStore
+- providing info for each user orders with its products
+- providing CRUD operations on database models
+- use hashing to secure user's password
+- provide JWT to verify access all over application routes
 ## Connect to postgres
 - connect to the default postgres database as the server's root user: psqL -U postgres' 
 - In psql run the following to create a user : CREATE USER Admin WITH PASSWORD '12345678';
