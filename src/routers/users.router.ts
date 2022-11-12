@@ -12,7 +12,7 @@ const usersRouter = Router();
 
 usersRouter.get('/', verifyAuthToken, index);
 usersRouter.get('/show', verifyAuthToken, Show);
-usersRouter.post('/create', verifyAuthToken, create);
+usersRouter.post('/create', create);
 usersRouter.patch('/update', verifyAuthToken, update);
 usersRouter.delete('/delete', verifyAuthToken, deleteUser);
 export default usersRouter;

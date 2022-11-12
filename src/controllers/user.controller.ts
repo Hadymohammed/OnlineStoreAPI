@@ -6,13 +6,13 @@ import varifyUser from '../services/varifyUser.services';
 import getUpdatedUser from '../modules/updatedUser.modules';
 import formatting, { formatedUser } from '../modules/formateJson.modules';
 
-const format=new formatting;
+const format = new formatting();
 const userEntity = new UserModel();
 
 const index = async (req: Request, res: Response): Promise<void> => {
     try {
         const data = await userEntity.index();
-        const formatedData:formatedUser[]=[];
+        const formatedData: formatedUser[] = [];
         for (const row of data) {
             formatedData.push(format.user(row));
         }
@@ -26,7 +26,7 @@ const Show = async (req: Request, res: Response): Promise<void> => {
         // accepts body in json format
         const id = req.body.id;
         const data = await userEntity.getById(id);
-        const formatedData= format.user(data);
+        const formatedData = format.user(data);
         res.send(formatedData);
     } catch (err) {
         res.status(500).send('Internal server error');
@@ -43,7 +43,7 @@ const create = async (req: Request, res: Response): Promise<void> => {
         user.password = hash(user.password as string);
         user.token = generateToken(user);
         const data = await userEntity.create(user);
-        const formatedData=format.user(data);
+        const formatedData = format.user(data);
         res.send(formatedData);
     } catch (err) {
         res.status(500).send('Internal server error');
@@ -64,7 +64,7 @@ const update = async (req: Request, res: Response): Promise<void> => {
         try {
             const updated = await getUpdatedUser(user);
             const data = await userEntity.update(updated);
-            const formatedData=format.user(data);
+            const formatedData = format.user(data);
             res.send(formatedData);
         } catch (err) {
             res.status(401);
@@ -88,7 +88,7 @@ const deleteUser = async (req: Request, res: Response): Promise<void> => {
     if (Varification) {
         try {
             const data = await userEntity.deleteById(user.id as number);
-            const formatedData=format.user(data);
+            const formatedData = format.user(data);
             res.send(formatedData);
         } catch (err) {
             res.json('Invalid : ' + err);

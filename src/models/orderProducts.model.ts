@@ -16,7 +16,7 @@ export interface orderProduct {
 }
 const formate = new formatting();
 const orderEntity = new ordersModel();
-const userEntity=new UserModel();
+const userEntity = new UserModel();
 
 class OrderProductsModel {
     async showAll(): Promise<orderProduct[]> {
@@ -31,9 +31,13 @@ class OrderProductsModel {
             'select * from orders join order_products on orders.id=order_products.order_id join products on products.id=order_products.product_id where orders.id=$1',
             [order.id]
         );
-        
-        const user=await userEntity.getById(order.user_id);
-        const orderInfo: completeOrder = formate.completeOrder(rows, order,user);
+
+        const user = await userEntity.getById(order.user_id);
+        const orderInfo: completeOrder = formate.completeOrder(
+            rows,
+            order,
+            user
+        );
         return orderInfo;
     }
 

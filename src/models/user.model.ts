@@ -10,9 +10,7 @@ export interface User {
 
 class UserModel {
     async index(): Promise<User[]> {
-        const { rows } = await db.query(
-            'select * from users'
-        );
+        const { rows } = await db.query('select * from users');
         return rows;
     }
 

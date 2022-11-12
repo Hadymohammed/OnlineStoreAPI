@@ -1,5 +1,12 @@
 # OnlineStoreAPI
 Practicing on RESTFUL API &amp; Postgres DB
+## Connect to postgres
+- connect to the default postgres database as the server's root user: psqL -U postgres' 
+- In psql run the following to create a user : CREATE USER Admin WITH PASSWORD '12345678';
+- In psql run the following to create the dev and test database : CREATE DATABASE onlineStore; CREATE DATABASE onlineStore_test;
+- Connect to the databases and grant all privileges : '\c onlineStore' ,  'GRANT ALL PRIVILEGES ON DATABASE onlineStore TO admin;' 
+- Grant for test database - '\c onlineStore_test' , 'GRANT ALL PRIVILEGES ON DATABASE onlineStore_test TO admin;' 
+
 ## How to start
 - install package dependencies => npm install
 - add .env file to the root directory following .env.example format
@@ -44,7 +51,7 @@ Practicing on RESTFUL API &amp; Postgres DB
 - /users
   - index (GET): shows all users (token required)
   - /show (GET): shows user, (id) required in req.body as json (token required)
-  - /create (POST): adds new user, (id,first_name,last_name,password) required in req.body as json (token required)
+  - /create (POST): adds new user, (id,first_name,last_name,password) required in req.body as json 
   - /update (PATCH): updates user data, (id,password) required for editing varification + updated data (first_name?,last_name?) in req.body as json (token required)
   - /delete (DELETE): deletes user using id, (id,password) required for varification in req.body as json (token required)
 - /products
@@ -54,8 +61,8 @@ Practicing on RESTFUL API &amp; Postgres DB
   - /update (PATCH): update existing product, (id,name?,price?) required in req.body as json (token required)
   - /delete (DELETE): deletes product using id, (id) required in req.body as json (token required)
 - /orders
-  - index (GET): shows all orders
-  - /show (GET): shows order using id, (id) required in req.body as json
+  - index (GET): shows all orders (token required)
+  - /show (GET): shows order using id, (id) required in req.body as json (token required)
   - /create (POST): adds new order, (user_id,status) required in req.body as json (token required)
   - /update (PATCH): update existing order, (id,user_id?,status?) required in req.body as json (token required)
   - /delete (DELETE): deletes order using id, (id) required in req.body as json (token required)

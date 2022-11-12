@@ -5,8 +5,8 @@ import { User } from '../models/user.model';
 export interface completeOrder {
     order_id: number;
     order_status: string;
-    user_id:number,
-    user_name:string,
+    user_id: number;
+    user_name: string;
     products: orderProduct[];
 }
 export interface userOrders {
@@ -14,12 +14,12 @@ export interface userOrders {
     user_name: string;
     orders: completeOrder[];
 }
-export interface formatedUser{
+export interface formatedUser {
     user_id: number;
     user_name: string;
 }
 class formatting {
-    completeOrder(rows: any, order: Order,user:User): completeOrder {
+    completeOrder(rows: any, order: Order, user: User): completeOrder {
         for (const row of rows) {
             delete row.id;
             delete row.user_id;
@@ -28,8 +28,8 @@ class formatting {
         }
         const orderInfo: completeOrder = {
             order_id: order.id as number,
-            user_id:order.user_id,
-            user_name:`${user.first_name} ${user.last_name}`,
+            user_id: order.user_id,
+            user_name: `${user.first_name} ${user.last_name}`,
             order_status: order.status,
             products: [],
         };
@@ -46,11 +46,11 @@ class formatting {
         };
         return formatedData;
     }
-    user(user:User):formatedUser{
+    user(user: User): formatedUser {
         const formatedData = {
             user_id: user.id as number,
             user_name: `${user.first_name} ${user.last_name}`,
-        }
+        };
         return formatedData;
     }
 }

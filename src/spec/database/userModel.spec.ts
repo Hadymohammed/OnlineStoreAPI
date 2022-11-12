@@ -1,7 +1,11 @@
-import UserModel from '../../models/user.model';
+import UserModel, { User } from '../../models/user.model';
 
 const userEntity = new UserModel();
-//users id starts from 3
+const user: User = {
+    first_name: 'Ahmed',
+    last_name: 'Mohamed',
+    password: '123123',
+};
 describe('User Model testing suit', () => {
     it('Should have an index method', () => {
         expect(userEntity.index).toBeDefined();
@@ -20,46 +24,26 @@ describe('User Model testing suit', () => {
     });
 
     it('Should create user', async () => {
-        const result = await userEntity.create({
-            first_name: 'Ahmed',
-            last_name: 'Mohamed',
-            password: '123123',
-        });
-        expect(result).toEqual({
-            id: 3,
-            first_name: 'Ahmed',
-            last_name: 'Mohamed',
-        });
+        const result = await userEntity.create(user);
+        user.id = result.id;
+        delete user.password;
+        delete result.password;
+        expect(result).toEqual(user);
     });
     it('Shold gets user from getById()', async () => {
-        const result = await userEntity.getById(3);
-        expect(result).toEqual({
-            id: 3,
-            first_name: 'Ahmed',
-            last_name: 'Mohamed',
-            password: '123123',
-        });
+        const result = await userEntity.getById(user.id as number);
+        delete result.password;
+        expect(result).toEqual(user);
     });
     it('Should updates user', async () => {
-        const result = await userEntity.update({
-            id: 3,
-            first_name: 'Ahmed',
-            last_name: 'Update',
-            password: '123123',
-        });
-        expect(result).toEqual({
-            id: 3,
-            first_name: 'Ahmed',
-            last_name: 'Update',
-        });
+        user.first_name = 'Mohamed';
+        const result = await userEntity.update(user);
+        delete result.password;
+        expect(result).toEqual(user);
     });
     it('Should deletes user', async () => {
-        const result = await userEntity.deleteById(3);
-        expect(result).toEqual({
-            id: 3,
-            first_name: 'Ahmed',
-            last_name: 'Update',
-            password: '123123',
-        });
+        const result = await userEntity.deleteById(user.id as number);
+        delete result.password;
+        expect(result).toEqual(user);
     });
 });

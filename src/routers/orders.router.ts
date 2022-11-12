@@ -10,8 +10,8 @@ import verifyAuthToken from '../utilities/middlewares/authToken.middleware';
 
 const ordersRouter = Router();
 
-ordersRouter.get('/', index);
-ordersRouter.get('/show', Show);
+ordersRouter.get('/', verifyAuthToken, index);
+ordersRouter.get('/show', verifyAuthToken, Show);
 ordersRouter.post('/create', verifyAuthToken, addOdrer);
 ordersRouter.delete('/delete', verifyAuthToken, deleteById);
 ordersRouter.patch('/update', verifyAuthToken, update);

@@ -56,7 +56,7 @@ const update = async (req: Request, res: Response): Promise<void> => {
         price: req.body.price,
     };
     try {
-        const updated=await getUpdatedProduct(product);
+        const updated = await getUpdatedProduct(product);
         const data = await productEntity.update(updated);
         res.send(data);
     } catch (err) {
