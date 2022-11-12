@@ -44,6 +44,7 @@ const create = async (req: Request, res: Response): Promise<void> => {
         user.token = generateToken(user);
         const data = await userEntity.create(user);
         const formatedData = format.user(data);
+        formatedData.token=user.token;
         res.send(formatedData);
     } catch (err) {
         res.status(500).send('Internal server error');

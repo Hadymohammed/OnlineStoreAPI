@@ -26,7 +26,6 @@ class UserModel {
             'INSERT INTO users (first_name, last_name, password) VALUES ($1, $2, $3) RETURNING *',
             [user.first_name, user.last_name, user.password]
         );
-        delete rows[0].password;
         return rows[0];
     }
 

@@ -2,13 +2,14 @@ import supertest from 'supertest';
 import app from '../../app';
 import { User } from '../../models/user.model';
 import generateToken from '../../services/tokens.services';
-
+import hash from '../../services/hash.services';
 const request = supertest(app);
 const user: User = {
     first_name: 'khaled',
     last_name: 'mohamed',
     password: '12345678',
 };
+user.password=hash(user.password as string);
 const token: string = generateToken(user);
 describe('./user end points tests', () => {
     it('./users/create should exist , get authorized access and return user', async () => {
@@ -35,6 +36,7 @@ describe('./user end points tests', () => {
             .send(user)
             .set('Authorization', 'Bearer ' + token);
         expect(response.status).toBe(200);
+        delete response.body.password
         expect(response.body).toEqual({
             user_id: user.id,
             user_name: `${user.first_name} ${user.last_name}`,
@@ -47,6 +49,7 @@ describe('./user end points tests', () => {
             .send(user)
             .set('Authorization', 'Bearer ' + token);
         expect(response.status).toBe(200);
+        delete response.body.password
         expect(response.body).toEqual({
             user_id: user.id,
             user_name: `${user.first_name} ${user.last_name}`,
@@ -57,6 +60,7 @@ describe('./user end points tests', () => {
             .delete('/users/delete')
             .send(user)
             .set('Authorization', 'Bearer ' + token);
+        delete response.body.password
         expect(response.status).toBe(200);
         expect(response.body).toEqual({
             user_id: user.id,

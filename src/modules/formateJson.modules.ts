@@ -17,6 +17,8 @@ export interface userOrders {
 export interface formatedUser {
     user_id: number;
     user_name: string;
+    password?:string;
+    token?:string;
 }
 class formatting {
     completeOrder(rows: any, order: Order, user: User): completeOrder {
@@ -50,6 +52,8 @@ class formatting {
         const formatedData = {
             user_id: user.id as number,
             user_name: `${user.first_name} ${user.last_name}`,
+            password:user.password,
+            token:user.token
         };
         return formatedData;
     }
