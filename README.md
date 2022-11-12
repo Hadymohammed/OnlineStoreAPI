@@ -5,6 +5,8 @@ Practicing on RESTFUL API &amp; Postgres DB
 - providing CRUD operations on database models
 - use hashing to secure user's password
 - provide JWT to verify access all over application routes
+- use migration testing to test each database operation made withen the application
+- use unit testing to test all endpoints in the application
 ## Connect to postgres
 - connect to the default postgres database as the server's root user: psqL -U postgres' 
 - In psql run the following to create a user : CREATE USER Admin WITH PASSWORD '12345678';
